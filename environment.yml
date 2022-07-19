@@ -1,0 +1,7 @@
+name: actg-assembly-0.1
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bioconda::fastqc=0.11.8
