@@ -5,6 +5,7 @@ Lesson 1: Genome Arithmetic
    :maxdepth: 3
    :caption: Learning Material:
 
+   instructions
    resources
    lesson
    lab

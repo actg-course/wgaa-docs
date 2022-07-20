@@ -3,7 +3,7 @@ Module 4: Genome Annotation
 
 .. toctree::
    :maxdepth: 3
-   :caption: Contents:
+   :caption: Lessons:
 
    Lesson_01/index
    Lesson_02/index
