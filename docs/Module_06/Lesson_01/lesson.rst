@@ -1,2 +1,8 @@
-Lessons
-=======
+Lesson
+======
+
+Learning Objectives
+-------------------
+
+Learning Material
+-----------------
