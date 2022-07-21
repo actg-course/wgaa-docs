@@ -9,8 +9,8 @@ dependencies:
   - bioconda::multiqc=1.13a
   - bioconda::sra-tools=2.11.0
   - bioconda::fastp=0.23.2
-  #- bioconda::samtools=1.15.1
-  #- bioconda::bwa=0.7.17
+  - bioconda::samtools=1.15.1
+  - bioconda::bwa=0.7.17
   #- bioconda::jellyfish=2.2.10
   #- bioconda::blast=2.12.0
   #- bioconda::hifiasm=0.16.1
