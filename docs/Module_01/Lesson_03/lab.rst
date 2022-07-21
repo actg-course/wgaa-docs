@@ -57,6 +57,7 @@ Change directory into ``shotgun-dna``. Then make two more directories called
 
 .. image:: ./media/project_dir.png
     :alt: Project directory structure
+    :width: 300
 
 
 I used the **tree** command to make this directory tree.
