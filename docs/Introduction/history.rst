@@ -1,5 +1,10 @@
 History
 =======
+
+.. warning::
+
+    Details on this page not complete
+
 Active instruction of this course occurred for the following genomes
 
 Course Versions
@@ -14,9 +19,6 @@ Assembled Genomes
 -----------------
 The following genomes have been (or are being) assembled by students of this course.
 
-.. error::
-    
-    Details on this page need updating
 
 *Malus x domestica* WA 38, Cosmic Crisp © apple
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

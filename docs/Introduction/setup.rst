@@ -1,6 +1,10 @@
 Computational Setup
 ===================
 
+.. warning::
+
+    Details on this page not complete
+
 Requirements
 ------------
 The following indicates the necessary computational requirements to learn this course.
