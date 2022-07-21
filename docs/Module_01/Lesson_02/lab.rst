@@ -21,8 +21,8 @@ Give it a go, be patient, and ask questions.
 
     `"I am not discouraged, because every wrong attempt discarded is another step forward."` - Thomas Edison
 
-Task A Download and run FASTQC
-------------------------------
+Task A: Download and run FASTQC
+-------------------------------
 
 Step 1. Use Conda to install a package
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -43,7 +43,7 @@ I usually just google something like “conda fastqc” and it’s always the fi
 Now install it, just like the website says:
 
 
-.. code-block:: console
+.. code-block:: bash
 
     conda install -c bioconda fastqc
 
@@ -58,7 +58,7 @@ response.
 
 Did it work? Run fastqc with the -h (help) flag and see:
 
-.. code-block:: console
+.. code-block:: bash
 
     fastqc -h
 
@@ -127,7 +127,7 @@ flag.
 To download this paired-end Illumina data, copy/paste the SRR number into the **fastq-dump**
 command:
 
-.. code-block:: console
+.. code-block:: bash
 
     fastq-dump -X 20000000 --split-files SRR12517164
 
@@ -136,14 +136,14 @@ can’t use the command line. Let’s shove this job into “the background” s
 command line again. Press “Control + Z” to pause the job, and then push the job into the
 background using bg.
 
-.. code-block:: console
+.. code-block:: bash
 
     bg
 
 Now we’ve got our command line back. We can see what jobs are running in the background
 using jobs:
 
-.. code-block:: console
+.. code-block:: bash
 
     jobs
 
@@ -158,7 +158,7 @@ automatically start the job in the background.
 Data transfer from SRA is not blazing fast, though. Check on the progress of your data
 transfer using:
 
-.. code-block:: console
+.. code-block:: bash
 
     ls -lhrt
 
@@ -183,7 +183,7 @@ run, and represent read1 (``_1.fastq``) and the read2 (``_2.fastq``) for every s
 molecule. We’ll talk more about fastq format soon, but go ahead and look at the files. You
 can quickly look at the first few lines of a file using head.
 
-.. code-block:: console
+.. code-block:: bash
 
     head SRR12517164_1.fastq
 
@@ -203,8 +203,8 @@ to the sample’s R2 FASTQ file. Each entry in a FASTQ files consists of 4 lines
 
 Now we’ve got data and we’ve got fastqc installed. Let’s run **fastqc**.
 
-Task B Run FASTQC and assess the quality of some Illumina shotgun data
-----------------------------------------------------------------------
+Task B: Run FASTQC and assess the quality of some Illumina shotgun data
+-----------------------------------------------------------------------
 
 FASTQC is a simple program that allows us to objectively measure some statistics about a
 sequencing run. From the `FASTQC github page <https://github.com/s-andrews/FastQC>`_:
@@ -216,14 +216,14 @@ sequencing run. From the `FASTQC github page <https://github.com/s-andrews/FastQ
 Step 1: Check out the help options for fastqc
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: console
+.. code-block:: bash
 
     fastqc -h
 
 FastQC looks pretty straightforward to run, right? From the help menu, all we need to run
 this program is to list our sequence files.
 
-.. code-block:: console
+.. code-block:: bash
 
     fastqc seqfile1 seqfile2 .. seqfileN
 
@@ -288,7 +288,7 @@ Step 3: Compression
 Right now we have lots of ``.fastq`` files sitting around, taking up space. Use the
 **gzip** compression algorithm to compress all of them.
 
-.. code-block:: console
+.. code-block:: bash
 
     ls *.fastq
     gzip *.fastq

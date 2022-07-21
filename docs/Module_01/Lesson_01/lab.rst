@@ -24,7 +24,7 @@ Step 1. Where am I?
 
 Help! I’m lost! Where am I? The UNIX command ``pwd`` is your lighthouse.
 
-.. code-block:: console
+.. code-block:: bash
 
     pwd
 
@@ -33,20 +33,20 @@ Module 1 of `LinuxSurvival <https://linuxsurvival.com/linux-tutorial-introductio
 
 Use ``ls`` to list the files in your current directory:
 
-.. code-block:: console
+.. code-block:: bash
 
     ls
 
 Add a “flag” to ``ls`` to see more information about every file. ``-l`` stands for “long format”.
 
-.. code-block:: console
+.. code-block:: bash
 
     ls -l
 
 What are all the flags you can use for a given command? Read the manual for every UNIX
 command by using the man command:
 
-.. code-block:: console
+.. code-block:: bash
 
     man ls
 
@@ -55,7 +55,7 @@ Step 2. Make a new directory for this lab
 
 We use ``mkdir`` to make a new directory (folder). The usage is two parts:
 
-.. code-block:: console
+.. code-block:: bash
 
     mkdir <dirname>
 
@@ -63,7 +63,7 @@ Replace ``<dirname>`` with what you want to call this directory. Make sure it is
 word, no spaces. I’ll use “Lab1” but organize your life however you’d like to.
 
 
-.. code-block:: console
+.. code-block:: bash
 
     mkdir Lab1
 
@@ -76,13 +76,13 @@ filename or path for you as long as it is unique.
 We want to change directories into Lab1 now using the ``cd`` command, but we also want
 to be lazy. We *could* type out the full command:
 
-.. code-block:: console
+.. code-block:: bash
 
     cd Lab1
 
 Or, we could just type:
 
-.. code-block:: console
+.. code-block:: bash
 
     cd La
 
@@ -113,7 +113,7 @@ The unix command ``wget`` allows us to fetch data from servers. Not every UNIX c
 means something, but wget’s name is derived from World Wide Web + get = wget. Here’s
 how we use it:
 
-.. code-block:: console
+.. code-block:: bash
 
     wget https://www.arabidopsis.org/download_files/Genes/TAIR10_genome_release/TAIR10_chromosome_files/TAIR10_chr_all.fas
 
@@ -124,7 +124,7 @@ Step 2. Let’s see what the genome looks like
 
 Use the command ``less`` to open up the FASTA file:
 
-.. code-block:: console
+.. code-block:: bash
 
     less TAIR10_chr_all.fas
 
@@ -139,7 +139,7 @@ Just like in Microsoft Word, you can use another UNIX program to find words or c
 This is really helpful if we just want to look at every line that has a FASTA header with
 the “>” character.
 
-.. code-block:: console
+.. code-block:: bash
 
     grep ">" TAIR10_chr_all.fas
 
@@ -153,7 +153,7 @@ Step 3. View gene annotation sequences in a FASTA file
 Use your new set of UNIX vocabulary to download the peptide sequences for Arabidopsis.
 Here’s the link:
 
-.. code-block:: console
+.. code-block:: bash
 
     https://www.arabidopsis.org/download_files/Sequences/Araport11_blastsets/Araport11_genes.202106.pep.fasta.gz
 
@@ -162,13 +162,13 @@ called `gzip <https://www.gnu.org/software/gzip/>`_. This is a very common and n
 compression tool, just like .zip files on Windows and MacOS. To decompress this file,
 all we need to do is:
 
-.. code-block:: console
+.. code-block:: bash
 
     gzip -d filename
 
 The ``-d`` flag means “decompress”. What if we want to compress something?
 
-.. code-block:: console
+.. code-block:: bash
 
     gzip filename
 
