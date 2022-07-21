@@ -129,3 +129,125 @@ and very few people *really* needed to know the Q score of every single base.
 
 .. figure:: ./media/q_score_bins.png
     :alt: Q Score bins
+
+
+Task B
+------
+
+Many programs have been written to “clean” Illumina sequencing data. Some common examples
+are `trimmomatic <http://www.usadellab.org/cms/?page=trimmomatic>`__,
+`TrimGalore!<https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/>`__, and my
+personal favorite, `Fastp <https://github.com/OpenGene/fastp>`__. Fastp is exceptionally fast,
+and the defaults are excellent. It will automatically trim your fastq dataset with reasonable
+defaults, including automatically identifying and trimming the adapter sequences that might
+be present in your data.
+
+The structure of an Illumina-ready molecule for sequencing is below. The “insert” is your
+biological sequence (e.g. a piece of DNA or RNA), flanked on both sides by “adapter”
+sequence that is required for binding to the flow cell. The first read (R1) initiates
+sequencing at Primer 1, and reads through the insert sequence on the top strand. Depending
+on the length of the insert, and the chosen sequencing read length, sometimes you can
+sequencing into the adapter on the other side of the molecule (shown by the red dots).
+These adapter sequences at the 3′ ends of reads need to be removed. They are not true
+biological sequence!
+
+.. figure:: ./media/read_through_adapter.png
+    :alt: Read Through Adapter
+
+    Image Source: `QCFail.com Website <https://sequencing.qcfail.com/wp-content/uploads/sites/2/2016/02/read_through_adapter.png>`__
+
+QC Fail Sequencing » Read-through adapters can appear at the ends of  sequencing reads
+These issues are visible in the fastqc plots, like the example below, which shows the
+Illumina Universal Adapter being present in a high frequency of molecules starting ~35
+nucleotides. The insert must be very short here:
+
+.. figure:: ./media/adapter_content_plot.png
+    :alt: Adapter Content Plot
+
+    Image Source: `QCFail.com Website <https://sequencing.qcfail.com/wp-content/uploads/sites/2/2016/02/adapter_content_plot.png>`__
+
+
+Similarly, remember how chemistry issues like “phasing” can lead to signal degradation
+over time? Quality scores often start to drop as the sequencing moves towards the 3′ end
+of each molecule. This is normal, and we can detect this in fastqc plots. Below is an
+example:
+
+.. figure:: ./media/per_base_sequence_quality.png
+    :alt: Per Base Sequence Quality
+
+    Image Source `EC Seq Bioinformatics Website <https://www.ecseq.com/support/ngs/img/per_base_sequence_quality.png>`__
+
+- Why does the per base sequence quality decrease over the read in Illumina?
+- Does the Toomer’s Oak data display this trend? Let’s look at the fastqc plots you made.
+
+Install fastp
+^^^^^^^^^^^^^
+
+Read the github page, and install fastp using Conda. Make sure you’re in your
+“toomers” environment (or whatever you decided to name it).
+
+There are many ways to run fastp to output cleaned reads. You can 1) stream the reads
+directly to the standard out, so that you can pipe them into another program (e.g. a
+read aligner like BWA or bowtie), 2) write the cleaned reads to a separate file (which
+takes up space), or 3) output nothing except for the cleaned read statistics. For this
+lab, we’ll do #3. In the very near future future, since fastp is so quick to run, we
+will use the “streaming” option #1, and make use of pipes. This saves us a lot of
+storage — do we need to keep a copy of the raw data, plus a copy of the cleaned data?
+Not really*
+
+.. note::
+
+    There are caveats here we will talk about in lab.
+
+Use the same raw Illumina whole genome shotgun data that you used in the last lab. read1
+is the file that ends in R1, and read2 is the file that ends in R2. Insert the correct
+path to the reads, either the raw data from ``/scratch`` or your softlinked files in your
+own directory. The simplest way to run fastp to only generate a quality report of our
+data is:
+
+.. code-block:: bash
+
+    fastp -i read1 -I read2
+    # yeah, it's that easy.
+
+Use the ampersand (&) to start this job in the background. Ask google or your
+classmates if you can’t remember how. This job will take a few hours.
+
+After the run has finished, run MultiQC in the ``~/toomers-genome/`` directory to aggregate
+your **fastqc** and **fastp** results.
+
+Mastering Content
+-----------------
+What depth of coverage did I sequence to?
+
+A question we often ask — “Did I sequence deeply enough?”.
+
+Next-generation shotgun sequencing approaches require sequencing every base in a sample
+several times for two reasons:
+
+
+- You need multiple observations per base to come to a reliable base call.
+- Reads are not distributed evenly over an entire genome, simply
+  because the reads will sample the genome in a random and
+  independent manner. Therefore many bases will be covered
+  by fewer reads than the average coverage, while other bases
+  will be covered by more reads than average. You need to
+  account for this in your planning.
+
+This is expressed by the coverage metric, which is the number of
+times a genome has been sequenced (the depth of sequencing). For
+applications where you aim to sequence only a defined subset of
+an entire genome, like targeted resequencing or RNA sequencing,
+coverage means the amount of times you sequence that subset. For
+example, for targeted resequencing, coverage means the number of times the targeted subset of the genome is sequenced. In this case, we want to know the sequencing coverage of the whole genome; in other words, how many times did we sequence each nucleotide of the oak tree, on average?
+
+
+The general equation for computing coverage is:
+- C = LN / G
+- C stands for coverage
+- G is the haploid genome length
+- L is the read length
+- N is the number of reads
+
+Assume that the diploid genome size of our Toomers Oak is 1.5 Gigabases. What coverage
+of Illumina read depth did we sequence to?
