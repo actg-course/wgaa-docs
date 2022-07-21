@@ -136,7 +136,7 @@ Task B
 
 Many programs have been written to “clean” Illumina sequencing data. Some common examples
 are `trimmomatic <http://www.usadellab.org/cms/?page=trimmomatic>`__,
-`TrimGalore!<https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/>`__, and my
+`TrimGalore! <https://www.bioinformatics.babraham.ac.uk/projects/trim_galore/>`__, and my
 personal favorite, `Fastp <https://github.com/OpenGene/fastp>`__. Fastp is exceptionally fast,
 and the defaults are excellent. It will automatically trim your fastq dataset with reasonable
 defaults, including automatically identifying and trimming the adapter sequences that might
