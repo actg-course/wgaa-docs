@@ -176,14 +176,18 @@ The ``-d`` flag means “decompress”. What if we want to compress something?
 Mastering Content
 -----------------
 
-**Exercise 1**: Count the number of genes in the Arabidopsis peptide fasta file.
+Step 1
+^^^^^^
+Count the number of genes in the Arabidopsis peptide fasta file.
 
 Hint: You know how to use grep now. Is there a flag you can add to ``grep`` that
 will count things for you? Use man and/or Google. If you get stuck, rely on your
 colleagues, friends, and classmates in the discussion forum — this is real life,
 after all.
 
-**Exercise 2**: Plants have canonical repeat motifs at their telomeres, usually
+Step 2
+^^^^^^
+Plants have canonical repeat motifs at their telomeres, usually
 “CCCTAAA” for most monocots and eudicots (side note: monocots in the
 Asparagales order often have “CCCTAA” telomere repeats, like humans).
 
