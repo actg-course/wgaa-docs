@@ -7,6 +7,10 @@ Learning Objectives
 Learning Material
 -----------------
 
-**EMBED LECTURE VIDEO HERE**
+.. error::
 
-**ADD TEXT TRANSCRIPTION OF VIDEO HERE**
+    EMBED LECTURE VIDEO HERE
+
+.. error::
+
+    ADD TEXT TRANSCRIPTION OF VIDEO HERE
