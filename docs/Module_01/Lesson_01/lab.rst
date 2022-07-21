@@ -14,9 +14,7 @@ We will do four major things in this lab:
 
 Give it a go, be patient, and ask questions.
 
-.. note::
-
-    "Roads were made for journeys, not destinations" - Confucius
+    `"Roads were made for journeys, not destinations"` - Confucius
 
 Task A: Get comfortable on the command line
 -------------------------------------------
@@ -175,8 +173,8 @@ The ``-d`` flag means “decompress”. What if we want to compress something?
     gzip filename
 
 
-Practice
---------
+Mastering Content
+-----------------
 
 **Exercise 1**: Count the number of genes in the Arabidopsis peptide fasta file.
 

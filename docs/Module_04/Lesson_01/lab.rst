@@ -10,9 +10,7 @@ We will do two major things in this lab:
 - Walk through some examples of different file formats that bedtools can operate on
 - Run Liftoff2 to lift-over gene annotations from the Q. rubra genome onto ours
 
-.. note::
-
-    "Be for real, don't be a stranger" - Spice Girls
+    `"Be for real, don't be a stranger"` - Spice Girls
 
 Task A
 ------
