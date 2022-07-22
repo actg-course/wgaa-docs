@@ -21,6 +21,7 @@ contribute content to this manuscript and be included as co-authors on the final
    :caption: Contents:
 
    Introduction/index
+   Setup/index
    Module_01/index
    Module_02/index
    Module_03/index

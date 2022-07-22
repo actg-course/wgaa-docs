@@ -6,7 +6,7 @@ Introduction
    :caption: Contents:
 
    schedule
-   setup
+   computation
    data
    resources
    history

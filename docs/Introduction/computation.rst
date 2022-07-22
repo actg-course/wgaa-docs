@@ -1,5 +1,5 @@
-Computational Setup
-===================
+Computational Requirements
+==========================
 
 .. warning::
 
@@ -26,8 +26,8 @@ For a Full Genome
 
     ADD DETAILS HERE
 
-Computational Options
----------------------
+Options
+-------
 
 The following describes several ways to access the computational resources necessary for
 this course.  Instructors are encouraged to choose the method that best suits the needs
