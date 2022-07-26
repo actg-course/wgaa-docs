@@ -16,7 +16,7 @@ dependencies:
   - bioconda::mummer=3.23
   - bioconda::bedtools=2.30.0
   - bioconda::repeatmasker=4.1.2.p1
-  - bioconda::edta=2.0.1
-  - bioconda::braker2=2.1.6
+  # - bioconda::busco=5.4.0
+  #- bioconda::edta=2.0.1
+  #- bioconda::braker2=2.1.6
   #- bioconda::hic_qc=1.0
-  #- bioconda::busco=5.4.0
