@@ -2,7 +2,11 @@ Software Installation
 =====================
 
 The following sections provide instructions for how to prepare your computational
-infrastructure for this course.
+infrastructure for this course.  Choose the method that is most appropriate for your
+computational infrastructure.
+
+If you have an instructor for this course, the instructor will advise you on the
+appropriate option to use and these instructions will serve as a reference for you.
 
 .. note::
 
