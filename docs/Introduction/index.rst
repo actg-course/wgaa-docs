@@ -7,6 +7,7 @@ Introduction
 
    schedule
    computation
+   software
    data
    resources
    history

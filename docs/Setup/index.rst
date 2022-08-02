@@ -1,13 +1,14 @@
 Course Setup
 ============
-The following provides instructions for setup of this course on computing resources. Choose
-the method that best suits your needs or those of your students.
+This course will require both computational infrastructure and software to complete.
+Choose from one of the infrastructure types for this course described in
+the following sections.  Depending on the selection you make, you may or may not
+have to install software.  Instructions for installing the necessary software are
+provided.
 
 .. toctree::
-   :maxdepth: 3
+   :maxdepth: 4
    :caption: Computational Setup Options:
 
-   praxis_ai
-   slurm_cluster
-   workstation_docker
-   workstation_solo
+   infrastructure/index
+   software/index
