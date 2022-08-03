@@ -127,9 +127,21 @@ flag.
 To download this paired-end Illumina data, copy/paste the SRR number into the **fastq-dump**
 command:
 
-.. code-block:: bash
+.. tabs::
 
-    fastq-dump -X 20000000 --split-files SRR12517164
+    .. code-tab:: bash
+
+        fastq-dump -X 20000000 --split-files SRR12517164
+
+    .. code-tab:: docker
+
+        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) actg-course/wgaa:0.1 \
+          fastq-dump -X 20000000 --split-files SRR12517164
+
+    .. code-tab:: singularity
+
+        singularity exec -B ${PWD} docker://actg-course/wgaa:0.1 \
+          fastq-dump -X 20000000 --split-files SRR12517164
 
 Great! Well, mostly. We’re twiddling our thumbs now since this program is running and we
 can’t use the command line. Let’s shove this job into “the background” so we can use our

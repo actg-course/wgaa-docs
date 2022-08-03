@@ -57,5 +57,5 @@ software. The software, version and their purpose are provided below.
      - 2.0.1
      -
    * - hic_qc
-     - 1.0
-     -
+     - June 27, 2022 commit (6881c33)
+     - Performs QC Checks for Hi-C libraries using reads in a BAM file aligned to the genome assembly.

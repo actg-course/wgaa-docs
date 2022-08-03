@@ -2,11 +2,11 @@ Software Usage: Docker
 ======================
 This course provides a pre-configured `Docker <https://en.wikipedia.org/wiki/Docker_(software)>`__
 image containing all of the software. This means you do not have to install any
-software on your computational infrastructure if you have either Docker or
-`Singularity <https://docs.sylabs.io/guides/3.5/user-guide/introduction.html>`__
+software on your computational infrastructure! You can use this image if you have
+either Docker or `Singularity <https://docs.sylabs.io/guides/3.5/user-guide/introduction.html>`__
 installed.  If you have permission to install software on your infrastructure you
 may need to install either Docker or Singularity.  If not, work with your systems
-adminstrator.
+administrator.
 
 .. note::
 
@@ -23,10 +23,10 @@ Docker or Singularity Installation
 - If you want to install Singularity you can find installation instructions
   `here <https://docs.sylabs.io/guides/3.10/admin-guide/installation.html>`__:
 
-Use Docker to Run Software
---------------------------
-Anytime software is referenced in this course you can run it
-using Docker by following this example:
+How to Run Software with Docker
+-------------------------------
+If you use Docker, anytime software is referenced in this course you can run it
+by following this example:
 
 .. code-block:: bash
 
@@ -56,9 +56,9 @@ run. As an example, you can print out the version of R installed with the follow
     is not necessary but makes it easier to read and cut-and-paste
     from documentation!
 
-Use Singularity to Run Software
--------------------------------
-Anytime software is referenced in this course you can run it
+How to Run Software with Singularity
+------------------------------------
+If you use singularity, anytime software is referenced in this course you can run it
 using Singularity by following this example:
 
 .. code-block:: bash
