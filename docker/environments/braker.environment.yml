@@ -1,0 +1,7 @@
+name: actg-wgaa-braker
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bioconda::braker2=2.1.6

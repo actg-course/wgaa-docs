@@ -52,7 +52,7 @@ Did it work? Run fastqc with the -h (help) flag and see:
 
 Bulk Software Installation
 --------------------------
-This classes uses a variety of software packages listed on the :doc:`../../Introduction/software` page.
+This course uses a variety of software packages listed on the :doc:`../../Introduction/software` page.
 Rather than install them all we will use an environment file to install them with conda.
 To do this, create a new file named ``base.enrivonment.yml``.  And add the following
 contents:

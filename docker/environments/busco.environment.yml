@@ -1,0 +1,7 @@
+name: actg-wgaa-busco
+channels:
+  - conda-forge
+  - bioconda
+  - defaults
+dependencies:
+  - bioconda::busco=4.1.2
