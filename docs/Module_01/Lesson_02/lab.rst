@@ -129,16 +129,16 @@ command:
 
 .. tabs::
 
-    .. code-tab:: bash
+    .. code-tab:: bash Run Directly
 
         fastq-dump -X 20000000 --split-files SRR12517164
 
-    .. code-tab:: docker
+    .. code-tab:: bash Run with Docker
 
         docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) actg-course/wgaa:0.1 \
           fastq-dump -X 20000000 --split-files SRR12517164
 
-    .. code-tab:: singularity
+    .. code-tab:: bash Run with Singularity
 
         singularity exec -B ${PWD} docker://actg-course/wgaa:0.1 \
           fastq-dump -X 20000000 --split-files SRR12517164
