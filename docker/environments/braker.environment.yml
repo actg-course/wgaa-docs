@@ -1,7 +1,23 @@
-name: actg-wgaa-braker
+name: braker
 channels:
   - conda-forge
   - bioconda
   - defaults
 dependencies:
+  - anaconda::perl
+  - bioconda::perl-app-cpanminus
+  - bioconda::perl-hash-merge
+  - bioconda::perl-parallel-forkmanager
+  - bioconda::perl-scalar-util-numeric
+  - bioconda::perl-yaml
+  - bioconda::perl-class-data-inheritable
+  - bioconda::perl-exception-class
+  - bioconda::perl-test-pod
+  - anaconda::biopython
+  - bioconda::perl-file-which
+  - bioconda::perl-mce
+  - bioconda::perl-threaded
+  - bioconda::perl-list-util
+  - bioconda::perl-math-utils
+  - bioconda::cdbtools
   - bioconda::braker2=2.1.6
