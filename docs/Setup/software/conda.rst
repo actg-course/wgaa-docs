@@ -1,6 +1,9 @@
 Software Installation: Conda
 ============================
 
+.. image:: ./media/conda_logo.svg
+    :alt: Conda logo
+
 Conda Installation
 ------------------
 Conda is a package manager which is amazingly powerful and simple to use. If conda
@@ -50,7 +53,7 @@ Did it work? Run fastqc with the -h (help) flag and see:
 
     fastqc -h
 
-Bulk Software Installation
+Base Software Installation
 --------------------------
 This course uses a variety of software packages listed on the :doc:`../../Introduction/software` page.
 Rather than install them all we will use an environment file to install them with conda.
@@ -59,7 +62,6 @@ contents:
 
 .. code-block:: yaml
 
-    name: actg-wgaa-base
     channels:
       - conda-forge
       - bioconda
@@ -89,23 +91,135 @@ following explains the meaning of the elements of the file:
   the name of the channel (e.g. bioconda), the software name, and a specific version
   to install.
 
-You can install all of these software in one step with the following command:
+You can install all of these software into the "base" environment with this command:
 
 .. code-block:: bash
 
-    conda env create --quiet -f /base.environment.yml
+    conda env update --quiet -n base -f /base.environment.yml
 
 Additional Software Installation
 --------------------------------
-Some of the software tools are not setup for an easy conda installation. Below
-is a set of instructions for installing each one individually into its
-own conda environment.
+Some of the software tools are not part of the "base" environment because they
+work best in their own self-contained environment. You can install the remaining software
+in this way:
 
 Braker2
 ^^^^^^^
+**Step 1:**  Create the following YAML file named `braker.environment.yml`
+
+::
+
+    name: braker
+    channels:
+      - conda-forge
+      - bioconda
+      - defaults
+    dependencies:
+      - anaconda::perl
+      - bioconda::perl-app-cpanminus
+      - bioconda::perl-hash-merge
+      - bioconda::perl-parallel-forkmanager
+      - bioconda::perl-scalar-util-numeric
+      - bioconda::perl-yaml
+      - bioconda::perl-class-data-inheritable
+      - bioconda::perl-exception-class
+      - bioconda::perl-test-pod
+      - anaconda::biopython
+      - bioconda::perl-file-which
+      - bioconda::perl-mce
+      - bioconda::perl-threaded
+      - bioconda::perl-list-util
+      - bioconda::perl-math-utils
+      - bioconda::cdbtools
+      - bioconda::braker2=2.1.6
+
+**Step 2:**  Create the new braker environment
+
+.. code-block:: bash
+
+    conda env create --quiet -f braker.environment.yml
+
+
+**Step 3:** When you want to run braker run the following to enable the environment
+and then run any of the braker programs:
+
+.. code-block:: bash
+
+    conda activate braker
+    braker.pl
+
+You can use any of the software in the base environment by switching back:
+
+.. code-block:: bash
+
+    conda activate base
 
 EDTA
 ^^^^
+**Step 1:**  Create the following YAML file named `edta.environment.yml`
+
+::
+
+    name: edta
+    channels:
+      - conda-forge
+      - bioconda
+      - defaults
+    dependencies:
+      - bioconda::edta=2.0.1
+
+**Step 2:**  Create the new braker environment
+
+.. code-block:: bash
+
+    conda env create --quiet -f edta.environment.yml
+
+
+**Step 3:** When you want to run EDTA run the following to enable the environment
+and then run any of the EDTA programs:
+
+.. code-block:: bash
+
+    conda activate edta
+    EDTA.pl
+
+You can use any of the software in the base environment by switching back:
+
+.. code-block:: bash
+
+    conda activate base
 
 BUSCO
 ^^^^^
+**Step 1:**  Create the following YAML file named `busco.environment.yml`
+
+::
+
+    name: busco
+    channels:
+      - conda-forge
+      - bioconda
+      - defaults
+    dependencies:
+      - bioconda::busco=4.1.2
+
+**Step 2:**  Create the new BUSCO environment
+
+.. code-block:: bash
+
+    conda env create --quiet -f busco.environment.yml
+
+
+**Step 3:** When you want to run BUSCo run the following to enable the environment
+and then run any of the BUSCO programs:
+
+.. code-block:: bash
+
+    conda activate busco
+    busco
+
+You can use any of the software in the base environment by switching back:
+
+.. code-block:: bash
+
+    conda activate base

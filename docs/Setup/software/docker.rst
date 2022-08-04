@@ -30,24 +30,8 @@ by following this example:
 
 .. code-block:: bash
 
-    docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) \
-      actg-course/wgaa:0.1 <command>
-
-
-The ``-v ${PWD}`` argument instructs Docker to include the current directory
-as a new directory in the image at the same path you are currently at. All of
-the files in your current directory will be available to the image. The image is
-named ``actg-course/wgaa:0.1`` and Docker will download it if you've never used
-that image before. So be patient the first time you run the command.
-The ``-u $(id -u ${USER}):$(id -g ${USER}) `` argument instructs Docker to run
-any commands in the image as your local account on the UNIX system you are using.
-Finally, replace the ``<command>`` placeholder with the exact command you want to
-run. As an example, you can print out the version of R installed with the following:
-
-.. code-block:: bash
-
-    docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) \
-      actg-course/wgaa:0.1 R --version
+    docker run -v ${PWD}:/work -u $(id -u ${USER}):$(id -g ${USER}) \
+      systemsgenetics/actg-wgaa:0.1 <command>
 
 .. note::
 
@@ -56,6 +40,27 @@ run. As an example, you can print out the version of R installed with the follow
     is not necessary but makes it easier to read and cut-and-paste
     from documentation!
 
+The following is the meaning of each component in that command:
+
+- The ``-v ${PWD}:/work`` argument instructs Docker to include the current
+  directory on your current machine as a new directory inside of the image and
+  available at the path ``/work``.
+- The Docker image is named ``systemsgenetics/actg-wgaa:0.1`` and Docker will
+  download it if you've never used that image before. So be patient the first
+  time you run the command.
+- The ``-u $(id -u ${USER}):$(id -g ${USER})`` argument instructs Docker to run
+  any commands in the image as your local account on the UNIX system you are using.
+- Replace the ``<command>`` placeholder with the exact command you want to
+  run.
+
+As an example, you can print out the version of R installed with the following:
+
+.. code-block:: bash
+
+    docker run -v ${PWD}:/work -u $(id -u ${USER}):$(id -g ${USER}) \
+      systemsgenetics/actg-wgaa:0.1 R --version
+
+
 How to Run Software with Singularity
 ------------------------------------
 If you use singularity, anytime software is referenced in this course you can run it
@@ -63,16 +68,50 @@ using Singularity by following this example:
 
 .. code-block:: bash
 
-    singularity exec -B ${PWD} docker://actg-course/wgaa:0.1 <command>
+    singularity exec -B ${PWD}:/work docker://systemsgenetics/actg-wgaa:0.1 <command>
 
-The ``-v ${PWD}`` argument instructs Singularity to include the current directory
-as a new directory in the image at the same path you are currently at. All of
-the files in your current directory will be available to the image. The image is
-named ``docker://actg-course/wgaa:0.1`` and Singularity will download it
-if you've never used that image before. So be patient the first time you run the
-command. Replace the ``<command>`` placeholder with the exact command you want to
-run. As an example, you can print out the version of R installed with the following:
+The following is the meaning of each component in that command:
+
+
+- The ``-v ${PWD}:/work`` argument instructs Docker to include the current
+  directory on your current machine as a new directory inside of the image and
+  available at the path ``/work``.
+- The Docker image is named ``systemsgenetics/actg-wgaa:0.1`` and Singularity will
+  download it if you've never used that image before. So be patient the first
+  time you run the command.  So be patient the first time you run the command.
+- Replace the ``<command>`` placeholder with the exact command you want to run.
+
+As an example, you can print out the version of R installed with the following:
 
 .. code-block:: bash
 
-    singularity exec -B ${PWD} docker://actg-course/wgaa:0.1 R --version
+    singularity exec -B ${PWD}:/work docker://systemsgenetics/actg-wgaa:0.1 R --version
+
+How to Run Docker in Interactive Mode
+-------------------------------------
+The instructions in the previous sections described how to run software in a Docker
+image directly on the command-line.  However, if you like, you can enter inside
+of the image an use the command-line terminal as if it were a stand-alone machine.
+
+Interactive Mode with Docker
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To run software for this course in Docker in interactive mode use the following
+command to enter the image and then change into the work folder.
+
+.. code-block:: bash
+
+    docker run -it -v ${PWD}:/work -u $(id -u ${USER}):$(id -g ${USER}) \
+      systemsgenetics/actg-wgaa:0.1 /bin/bash
+
+    cd work
+
+Interactive with Singularity
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To run software for this course in Singularity in interactive mode use the following
+command to enter the image and then change into the work folder.
+
+.. code-block:: bash
+
+    singularity shell -B ${PWD}:/work docker://systemsgenetics/actg-wgaa:0.1
+
+    cd work

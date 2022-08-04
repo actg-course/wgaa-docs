@@ -45,7 +45,7 @@ services.  The course requires a student fee, equivalent for a text book, for ac
 to these services and provides predictive costs for offering the course.  Once the course
 is completed students can continue to access course content via this site as a free reference.
 
-**Advantages**e
+**Advantages**
 
 - Compute infrastructure is already available.
 - You can upscale the amount of computing power as needed.

@@ -12,3 +12,4 @@ Introduction
    resources
    history
    contributing
+   getting_help

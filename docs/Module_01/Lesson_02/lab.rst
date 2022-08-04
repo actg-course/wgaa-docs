@@ -9,7 +9,7 @@ running software very simple.
 
 
 .. image:: ./media/conda_logo.svg
-    :alt: Arabidopsis thaliana plant
+    :alt: Conda logo
 
 We will do three major things in this lab:
 

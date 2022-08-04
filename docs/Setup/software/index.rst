@@ -1,5 +1,5 @@
-Software Installation
-=====================
+Software Installation and Usage
+===============================
 
 The following sections provide instructions for how to prepare your computational
 infrastructure for this course.  Choose the method that is most appropriate for your
