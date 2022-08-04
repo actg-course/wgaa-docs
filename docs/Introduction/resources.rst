@@ -16,6 +16,7 @@ Course Resources
 - ACTG DockerHub Repository
   The docker images used for this course are housed in a public DockerHub repository.
 
-- ACTG GitHub Repository
+- `ACTG GitHub Repository <https://github.com/actg-course/wgaa>`__
   The source code markup for this online document is maintained on this public GitHub
-  repository.
+  repository.  Instructors who wish to contribute may clone this repository, edit content
+  and push their changes as pull requests.  

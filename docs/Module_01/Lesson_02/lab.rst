@@ -104,6 +104,7 @@ I picked this one: ``https://www.ncbi.nlm.nih.gov/sra/SRX9007723[accn]``
 Look through the whole SRA page; there is a lot of metadata attached to this sample.
 
 .. image:: ./media/sra_screenshot.png
+    :width: 75%
     :alt: NCBI SRA screenshot of WGS duckweek
 
 We know what machine the data was sequenced on (HiSeq 2000), that this is WGS Whole

@@ -39,13 +39,13 @@ following three options:
 Praxis AI
 ^^^^^^^^^
 This course is offered via a cloud-based service called `Praxis AI <http://www.prxai.com/>`__.
-Instructors and students who do not have computational resources onsite for students.  Praxis AI integrates
-educational material with computational resources, conference and collaboration
+Instructors and students who do not have ecomputational resources onsite for students.  Praxis AI
+integrates educational material with computational resources, conference and collaboration
 services.  The course requires a student fee, equivalent for a text book, for access
 to these services and provides predictive costs for offering the course.  Once the course
 is completed students can continue to access course content via this site as a free reference.
 
-**Advantages**
+**Advantages**e
 
 - Compute infrastructure is already available.
 - You can upscale the amount of computing power as needed.
@@ -65,7 +65,7 @@ For instructors and students with access to a high-performance workstations or a
 institutional compute cluster, we have created `Docker <https://www.docker.com/>`__ images
 that contain all of the necessary software required for this class. The Computational
 infrastructure must have a Docker service or a
-`Singularity <https://docs.sylabs.io/guides/2.6/user-guide/index.html#>`__ service
+`Singularity <https://docs.seylabs.io/guides/2.6/user-guide/index.html#>`__ service
 installed to use these images.
 
 .. note::

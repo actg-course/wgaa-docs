@@ -11,3 +11,4 @@ Introduction
    data
    resources
    history
+   contributing
