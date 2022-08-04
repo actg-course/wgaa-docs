@@ -129,7 +129,11 @@ command:
 
 .. tabs::
 
-    .. code-tab:: bash Praxis
+    .. code-tab:: bash PraxisAI
+
+        fastq-dump -X 20000000 --split-files SRR12517164
+
+    .. code-tab:: bash Stand-alone
 
         fastq-dump -X 20000000 --split-files SRR12517164
 
@@ -142,6 +146,14 @@ command:
 
         singularity exec -B ${PWD} docker://actg-course/wgaa:0.1 \
           fastq-dump -X 20000000 --split-files SRR12517164
+
+    .. tab:: Help
+
+        Here you find, on several different tabs, the command-line instruction
+        to execute this step of the lab on your computational infrastructure.
+        Depending on how this course has been setup the instruction will vary.
+        Please see the :doc:`../../Introduction/computation` page for information.
+        If you are unsure which instruction to use contact your instructor.
 
 Great! Well, mostly. We’re twiddling our thumbs now since this program is running and we
 can’t use the command line. Let’s shove this job into “the background” so we can use our
