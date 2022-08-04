@@ -1,4 +1,4 @@
-name: actg-wgaa-edta
+name: edta
 channels:
   - conda-forge
   - bioconda

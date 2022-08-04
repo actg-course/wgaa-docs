@@ -58,9 +58,35 @@ response.
 
 Did it work? Run fastqc with the -h (help) flag and see:
 
-.. code-block:: bash
 
-    fastqc -h
+.. tabs::
+
+    .. code-tab:: bash PraxisAI
+
+        fastqc -h
+
+    .. code-tab:: bash Stand-alone
+
+        fastqc -h
+
+    .. code-tab:: bash Docker
+
+        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) systemsgenetics/actg-wgaa:0.1 \
+          fastqc -h
+
+    .. code-tab:: bash Singularity
+
+        singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa:0.1 \
+          fastqc -h
+
+    .. tab:: Help
+
+        Here you find, on several different tabs, the command-line instruction
+        to execute this step of the lab on your computational infrastructure.
+        Depending on how this course has been setup the instruction will vary.
+        Please see the :doc:`../../Introduction/computation` page for information.
+        If you are unsure which instruction to use contact your instructor.
+
 
 Step 2. Download some Illumina data
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -139,12 +165,12 @@ command:
 
     .. code-tab:: bash Docker
 
-        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) actg-course/wgaa:0.1 \
+        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) systemsgenetics/actg-wgaa:0.1 \
           fastq-dump -X 20000000 --split-files SRR12517164
 
     .. code-tab:: bash Singularity
 
-        singularity exec -B ${PWD} docker://actg-course/wgaa:0.1 \
+        singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa:0.1 \
           fastq-dump -X 20000000 --split-files SRR12517164
 
     .. tab:: Help
@@ -240,16 +266,66 @@ sequencing run. From the `FASTQC github page <https://github.com/s-andrews/FastQ
 Step 1: Check out the help options for fastqc
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.. code-block:: bash
+.. tabs::
 
-    fastqc -h
+    .. code-tab:: bash PraxisAI
+
+        fastqc -h
+
+    .. code-tab:: bash Stand-alone
+
+        fastqc -h
+
+    .. code-tab:: bash Docker
+
+        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) systemsgenetics/actg-wgaa:0.1 \
+          fastqc -h
+
+    .. code-tab:: bash Singularity
+
+        singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa:0.1 \
+          fastqc -h
+
+    .. tab:: Help
+
+        Here you find, on several different tabs, the command-line instruction
+        to execute this step of the lab on your computational infrastructure.
+        Depending on how this course has been setup the instruction will vary.
+        Please see the :doc:`../../Introduction/computation` page for information.
+        If you are unsure which instruction to use contact your instructor.
+
 
 FastQC looks pretty straightforward to run, right? From the help menu, all we need to run
 this program is to list our sequence files.
 
-.. code-block:: bash
+.. tabs::
 
-    fastqc seqfile1 seqfile2 .. seqfileN
+    .. code-tab:: bash PraxisAI
+
+        fastqc seqfile1 seqfile2 .. seqfileN
+
+    .. code-tab:: bash Stand-alone
+
+        fastqc seqfile1 seqfile2 .. seqfileN
+
+    .. code-tab:: bash Docker
+
+        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) systemsgenetics/actg-wgaa:0.1 \
+          fastqc seqfile1 seqfile2 .. seqfileN
+
+    .. code-tab:: bash Singularity
+
+        singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa:0.1 \
+          fastqc seqfile1 seqfile2 .. seqfileN
+
+    .. tab:: Help
+
+        Here you find, on several different tabs, the command-line instruction
+        to execute this step of the lab on your computational infrastructure.
+        Depending on how this course has been setup the instruction will vary.
+        Please see the :doc:`../../Introduction/computation` page for information.
+        If you are unsure which instruction to use contact your instructor.
+
 
 Give it a shot — run **fastqc** on both of your fastq files.
 

@@ -1,4 +1,4 @@
-name: actg-wgaa-busco
+name: busco
 channels:
   - conda-forge
   - bioconda

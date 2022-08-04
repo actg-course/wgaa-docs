@@ -6,7 +6,7 @@ COPY environments/braker.environment.yml /
 COPY environments/busco.environment.yml /
 COPY environments/edta.environment.yml /
 
-RUN conda env create --quiet -f /base.environment.yml && conda clean -a
+RUN conda env update --quiet -n base -f /base.environment.yml && conda clean -a
 RUN conda env create --quiet -f /braker.environment.yml && conda clean -a
 RUN conda env create --quiet -f /edta.environment.yml && conda clean -a
 RUN conda env create --quiet -f /busco.environment.yml && conda clean -a
