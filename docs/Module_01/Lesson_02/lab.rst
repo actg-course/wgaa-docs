@@ -69,14 +69,14 @@ Did it work? Run fastqc with the -h (help) flag and see:
 
         fastqc -h
 
-    .. code-tab:: bash Docker
-
-        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) systemsgenetics/actg-wgaa:0.1 \
-          fastqc -h
-
     .. code-tab:: bash Singularity
 
         singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa:0.1 \
+          fastqc -h
+
+    .. code-tab:: bash Docker
+
+        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) systemsgenetics/actg-wgaa:0.1 \
           fastqc -h
 
     .. tab:: Help
@@ -164,14 +164,14 @@ command:
 
         fastq-dump -X 20000000 --split-files SRR12517164
 
-    .. code-tab:: bash Docker
-
-        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) systemsgenetics/actg-wgaa:0.1 \
-          fastq-dump -X 20000000 --split-files SRR12517164
-
     .. code-tab:: bash Singularity
 
         singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa:0.1 \
+          fastq-dump -X 20000000 --split-files SRR12517164
+
+    .. code-tab:: bash Docker
+
+        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) systemsgenetics/actg-wgaa:0.1 \
           fastq-dump -X 20000000 --split-files SRR12517164
 
     .. tab:: Help
@@ -277,14 +277,14 @@ Step 1: Check out the help options for fastqc
 
         fastqc -h
 
-    .. code-tab:: bash Docker
-
-        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) systemsgenetics/actg-wgaa:0.1 \
-          fastqc -h
-
     .. code-tab:: bash Singularity
 
         singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa:0.1 \
+          fastqc -h
+
+    .. code-tab:: bash Docker
+
+        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) systemsgenetics/actg-wgaa:0.1 \
           fastqc -h
 
     .. tab:: Help
@@ -309,14 +309,14 @@ this program is to list our sequence files.
 
         fastqc seqfile1 seqfile2 .. seqfileN
 
-    .. code-tab:: bash Docker
-
-        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) systemsgenetics/actg-wgaa:0.1 \
-          fastqc seqfile1 seqfile2 .. seqfileN
-
     .. code-tab:: bash Singularity
 
         singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa:0.1 \
+          fastqc seqfile1 seqfile2 .. seqfileN
+          
+    .. code-tab:: bash Docker
+
+        docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) systemsgenetics/actg-wgaa:0.1 \
           fastqc seqfile1 seqfile2 .. seqfileN
 
     .. tab:: Help
