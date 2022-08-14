@@ -1,5 +1,5 @@
-Lab Exercises
-=============
+4.3 Lab Exercises
+=================
 Overview
 --------
 This lab will walk us through the process of annotating a genome for repeats.

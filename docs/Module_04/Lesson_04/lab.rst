@@ -1,5 +1,6 @@
-Lab Exercises
-=============
+4.4 Lab Exercises
+=================
+
 Overview
 --------
 This lab will walk us through the process of annotating a genome for genes using the

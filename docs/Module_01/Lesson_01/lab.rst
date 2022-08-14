@@ -1,5 +1,5 @@
-Lab Exercises
-=============
+1.1 Lab Exercises
+=================
 
 Overview
 --------

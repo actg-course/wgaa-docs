@@ -1,5 +1,5 @@
-Lesson
-======
+3.2 Lesson
+==========
 
 Learning Objectives
 -------------------

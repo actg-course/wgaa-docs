@@ -1,2 +1,2 @@
-Lab Exercises
-=============
+5.2 Lab Exercises
+=================

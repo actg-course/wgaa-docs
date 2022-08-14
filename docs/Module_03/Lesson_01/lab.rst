@@ -1,5 +1,5 @@
-Lab Exercises
-=============
+3.1 Lab Exercises
+=================
 
 Overview
 --------
@@ -67,7 +67,7 @@ Phew! Most of the top hits are Quercus species or related.
 
 Mastering Content
 -----------------
-**Your first job**: Use any tool to 1) calculate the total number of bases sequenced, and 2) 
+**Your first job**: Use any tool to 1) calculate the total number of bases sequenced, and 2)
 based on your GenomeScope genome size estimate, calculate the PacBio sequencing coverage.
 Use google and your classmates. Remember: you have total freedom. Install a useful piece of
 software if you find one. This is the essence of computational biology.

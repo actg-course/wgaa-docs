@@ -1,5 +1,5 @@
-Lab Exercises
-=============
+3.4 Lab Exercises
+=================
 Overview
 --------
 In this lab, we will learn the basics of interacting with Juicebox and .hic files to

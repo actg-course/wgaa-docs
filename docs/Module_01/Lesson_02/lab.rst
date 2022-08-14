@@ -1,5 +1,5 @@
-Lab Exercises
-=============
+1.2 Lab Exercises
+=================
 
 Overview
 --------
@@ -313,7 +313,7 @@ this program is to list our sequence files.
 
         singularity exec -B ${PWD} docker://systemsgenetics/actg-wgaa:0.1 \
           fastqc seqfile1 seqfile2 .. seqfileN
-          
+
     .. code-tab:: bash Docker
 
         docker run -v ${PWD} -u $(id -u ${USER}):$(id -g ${USER}) systemsgenetics/actg-wgaa:0.1 \

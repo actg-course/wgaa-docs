@@ -1,5 +1,5 @@
-Lab Exercises
-=============
+3.5 Lab Exercises
+=================
 In this lab, we will learn the basics of assessing the completeness of a draft assembly.
 
 We will do two major things in this lab:

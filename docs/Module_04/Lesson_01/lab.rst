@@ -1,5 +1,5 @@
-Lab Exercises
-=============
+4.1 Lab Exercises
+=================
 Overview
 --------
 In this lab, we will learn the basics of performing genome arithmetic, and operating on intervals.
