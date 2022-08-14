@@ -48,7 +48,16 @@ HICCUPS can call these long-range loops (highlighted in blue squares).
 The best way to learn is to dive in. Today we’ll focus on using Juicebox, an
 interactive way to work with Hi-C maps and explore them. First, watch this
 high-level video from the Juicebox developers:
-https://www.youtube.com/watch?v=xA6CLsG_GAs
+
+.. raw:: html
+
+    <iframe width="560" height="315"
+        src="https://www.youtube.com/embed/xA6CLsG_GAs"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen></iframe>
+
 
 `Juicebox web <https://www.aidenlab.org/juicebox/>`__ is a cloud-based web app
 that allows us to look at and share Hi-C maps with each other. Open up
