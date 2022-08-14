@@ -21,3 +21,11 @@ RUN git clone https://github.com/phasegenomics/hic_qc.git \
   && conda activate hic_qc \
   && python setup.py install --user \
   && conda clean -a
+
+ # Install NOVOplasty
+RUN cd /usr/local/bin \
+  && git clone https://github.com/ndierckx/NOVOPlasty.git \
+  && cd NOVOPlasty \
+  && git checkout NOVOPlasty4.3.1 \
+  && chmod 755 NOVOPlasty4.3.1.pl
+ENV PATH="${PATH}:/usr/local/bin/NOVOPlasty"

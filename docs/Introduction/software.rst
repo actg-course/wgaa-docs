@@ -29,6 +29,9 @@ software. The software, version and their purpose are provided below.
    * - `SamTools <http://www.htslib.org/>`__
      - 1.15.1
      - A suite of programs for interacting with high-throughput sequencing data.
+   * - `NOVOPlasty <https://github.com/ndierckx/NOVOPlasty/>`__
+     - 4.3.1
+     - A de novo assembler and heteroplasmy/variance caller for short circular genomes.
    * - `BWA <http://bio-bwa.sourceforge.net/>`__
      - 0.7.17
      - A software package for mapping low-divergent sequences against a large reference genome.
@@ -57,5 +60,6 @@ software. The software, version and their purpose are provided below.
      - 2.0.1
      - Automated whole-genome de-novo TE annotation and benchmarking.
    * - `hic_qc <https://github.com/phasegenomics/hic_qc>`__
-     - June 27, 2022 commit (6881c33)
-     - Performs QC Checks for Hi-C libraries using reads in a BAM file aligned to the genome assembly.
+     - git commit 6881c33
+     - Performs QC Checks for Hi-C libraries using reads in a BAM file aligned to the genome assembly. The
+       version of this software is a commit to the source repository made on June 27, 2022.
