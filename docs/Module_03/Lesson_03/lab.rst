@@ -15,7 +15,11 @@ We will do two major things in this lab:
 - Explore the contact matrix to resolve assembly issues
 - Scaffold your haplotype assembly into chromosome pseudomolecules
 
-    `"Be for real, don't be a stranger"` - Spice Girls
+.. epigraph::
+
+    Be for real, don't be a stranger
+
+    -- Spice Girls
 
 Task A
 -------
@@ -96,7 +100,14 @@ our genome? Phase Genomics provides a helpful QC pipeline and scripts that can
 quickly tell us the quality of our data, given only a few million reads, and a
 reference genome of something very closely related or a draft genome.
 
-From Phase Genomics: “The best way to know if a Hi-C library worked is to look at how much long-range signal is in it. There are also several metrics which correlate with a suspicious library, such as a high number of PCR duplicates or a large number of reads which align to the same position in the genome (this happens when there are very short fragments in the library due for example to two restriction sites being very close together). Our QC script measures these quantities and makes a recommendation about the library based on the result.”
+From Phase Genomics:
+
+"The best way to know if a Hi-C library worked is to look at how much long-range signal is in it.
+There are also several metrics which correlate with a suspicious library, such as a high number
+of PCR duplicates or a large number of reads which align to the same position in the genome
+(this happens when there are very short fragments in the library due for example to two
+restriction sites being very close together). Our QC script measures these quantities
+and makes a recommendation about the library based on the result."
 
 https://phasegenomics.github.io/2019/09/19/hic-alignment-and-qc.html
 

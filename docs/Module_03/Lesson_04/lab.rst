@@ -11,7 +11,11 @@ We will do two major things in this lab:
 - Interact with Human ENCODE maps
 - Load the Toomer’s haplotype1 and haplotype2 Hi-C maps
 
-    `"Be for real, don't be a stranger"` - Spice Girls
+.. epigraph::
+
+    Be for real, don't be a stranger
+
+    -- Spice Girls
 
 Task A
 ------
