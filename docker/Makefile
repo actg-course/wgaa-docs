@@ -22,42 +22,42 @@ all: build-all
 build-all: fastqc-build r-base-build sra-tools-build fastp-build \
 	samtools-build bwa-build jellyfish-build hifiasm-build mummer-build \
 	bedtools-build repeatmasker-build yahs-build multiqc-build \
-	yahs-build hic_qc-build novoplasty-build busco-build braker-build \
+	hic_qc-build novoplasty-build busco-build braker-build \
 	edta-build
 push-all: fastqc-push r-base-push sra-tools-push fastp-push \
 	samtools-push bwa-push jellyfish-push hifiasm-push mummer-push \
 	bedtools-push repeatmasker-push yahs-push multiqc-push \
-	yahs-push hic_qc-push novoplasty-push busco-push braker-push \
+	hic_qc-push novoplasty-push busco-push braker-push \
 	edta-push
 test-all: fastqc-test r-base-test sra-tools-test fastp-test \
 	samtools-test bwa-test jellyfish-test hifiasm-test mummer-test \
 	bedtools-test repeatmasker-test yahs-test multiqc-test \
-	yahs-test hic_qc-test novoplasty-test busco-test braker-test \
+	hic_qc-test novoplasty-test busco-test braker-test \
 	edta-test
-
 
 #
 # EDTA
-#
+# Builds by copying a custom Dockerfile and passes in the version as an environment variable
 edta: edta-build
 edta-build:
 	mkdir -p build/edta; \
 	cd build/edta; \
-	cp ../../dockerfile-conda ./Dockerfile; \
-	cp ../../environment_template.yml environment.yml; \
-	echo "  - bioconda::edta=$(EDTA_VERSION)" >> environment.yml; \
-	docker build -t systemsgenetics/actg-wgaa-edta:$(EDTA_VERSION) .
+	cp ../../dockerfile-edta ./Dockerfile; \
+	docker build --build-arg VERSION=${EDTA_VERSION} -t systemsgenetics/actg-wgaa-edta:$(EDTA_VERSION) .
 
 edta-push: edta-build
 	cd build/edta; \
 	docker push systemsgenetics/actg-wgaa-edta:$(EDTA_VERSION)
 
-edta-test: 
-	docker run -it -u 0 systemsgenetics/actg-wgaa-edta:$(EDTA_VERSION) edta
+edta-test:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-edta:$(EDTA_VERSION) EDTA.pl 2>&1 | grep \(EDTA\)
+
+edta-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-edta:$(EDTA_VERSION) /bin/bash
 
 #
 # BRAKER
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 braker: braker-build
 braker-build:
 	mkdir -p build/braker; \
@@ -74,9 +74,12 @@ braker-push: braker-build
 braker-test:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-braker:$(BRAKER_VERSION) braker.pl --version
 
+braker-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-braker:$(BRAKER_VERSION) /bin/bash
+
 #
 # BUSCO
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 busco: busco-build
 busco-build:
 	mkdir -p build/busco; \
@@ -93,9 +96,12 @@ busco-push: busco-build
 busco-test:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-busco:$(BUSCO_VERSION) busco
 
+busco-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-busco:$(BUSCO_VERSION) /bin/bash
+
 #
 # NOVOplasty
-#
+# Builds by copying a custom Dockerfile and passes in the version as an environment variable
 novoplasty: novoplasty-build
 novoplasty-build:
 	mkdir -p build/novoplasty; \
@@ -108,11 +114,14 @@ novoplasty-push: novoplasty-build
 	docker push systemsgenetics/actg-wgaa-novoplasty:$(NOVOPLASTY_VERSION)
 
 novoplasty-test:
-	docker run -it -u 0 systemsgenetics/actg-wgaa-novoplasty:$(NOVOPLASTY_VERSION) NOVOPlasty$(NOVOPLASTY_VERSION).pl
+	docker run -it -u 0 systemsgenetics/actg-wgaa-novoplasty:$(NOVOPLASTY_VERSION) NOVOPlasty$(NOVOPLASTY_VERSION).pl | grep Version
+
+novoplasty-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-novoplasty:$(NOVOPLASTY_VERSION) /bin/bash
 
 #
 # hic_qc
-#
+# Builds by copying a custom Dockerfile and passes in the version as an environment variable
 hic_qc: hic_qc-build
 hic_qc-build:
 	mkdir -p build/hic_qc; \
@@ -125,11 +134,14 @@ hic_qc-push: hic_qc-build
 	docker push systemsgenetics/actg-wgaa-hic_qc:$(HIC_QC_VERSION)
 
 hic_qc-test:
-	docker run -it -u 0 systemsgenetics/actg-wgaa-hic_qc:$(HIC_QC_VERSION) hic_qc --version
+	docker run -it -u 0 systemsgenetics/actg-wgaa-hic_qc:$(HIC_QC_VERSION) /root/.bashrc && conda activate hic_qc && hic_qc.py --version
+
+hic_qc-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-hic_qc:$(HIC_QC_VERSION) /bin/bash
 
 #
 # yahs
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 yahs: yahs-build
 yahs-build:
 	mkdir -p build/yahs; \
@@ -146,9 +158,12 @@ yahs-push: yahs-build
 yahs-test:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-yahs:$(YAHS_VERSION) yahs --version
 
+yahs-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-yahs:$(YAHS_VERSION) /bin/bash
+
 #
 # repeatmasker
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 repeatmasker: repeatmasker-build
 repeatmasker-build:
 	mkdir -p build/repeatmasker; \
@@ -165,9 +180,12 @@ repeatmasker-push: repeatmasker-build
 repeatmasker-test:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-repeatmasker:$(REPEATMASKER_VERSION) RepeatMasker -v
 
+repeatmasker-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-repeatmasker:$(REPEATMASKER_VERSION) /bin/bash
+
 #
 # bedtools
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 bedtools: bedtools-build
 bedtools-build:
 	mkdir -p build/bedtools; \
@@ -184,9 +202,12 @@ bedtools-push: bedtools-build
 bedtools-test:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-bedtools:$(BEDTOOLS_VERSION) bedtools --version
 
+bedtools-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-bedtools:$(BEDTOOLS_VERSION) /bin/bash
+
 #
 # mummer
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 mummer: mummer-build
 mummer-build:
 	mkdir -p build/mummer; \
@@ -203,9 +224,12 @@ mummer-push: mummer-build
 mummer-test:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-mummer:$(MUMMER_VERSION) mummer | grep Usage
 
+mummer-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-mummer:$(MUMMER_VERSION) /bin/bash
+
 #
 # hifiasm
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 hifiasm: hifiasm-build
 hifiasm-build:
 	mkdir -p build/hifiasm; \
@@ -222,10 +246,12 @@ hifiasm-push: hifiasm-build
 hifiasm-test:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-hifiasm:$(HIFIASM_VERSION) hifiasm --version
 
+hifiasm-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-hifiasm:$(HIFIASM_VERSION) /bin/bash
 
 #
 # Jellyfish
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 jellyfish: jellyfish-build
 jellyfish-build:
 	mkdir -p build/jellyfish; \
@@ -242,9 +268,12 @@ jellyfish-push: jellyfish-build
 jellyfish-test:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-jellyfish:$(JELLYFISH_VERSION) jellyfish --version
 
+jellyfish-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-jellyfish:$(JELLYFISH_VERSION) /bin/bash
+
 #
 # BWA
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 bwa: bwa-build
 bwa-build:
 	mkdir -p build/bwa; \
@@ -261,9 +290,12 @@ bwa-push: bwa-build
 bwa-test:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-bwa:$(BWA_VERSION) bwa | grep Version
 
+bwa-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-edta:$(BWA_VERSION) /bin/bash
+
 #
 # SAMTools
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 samtools: samtools-build
 samtools-build:
 	mkdir -p build/samtools; \
@@ -280,9 +312,12 @@ samtools-push: samtools-build
 samtools-test:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-samtools:$(SAMTOOLS_VERSION) samtools --version-only
 
+samtools-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-samtools:$(SAMTOOLS_VERSION) /bin/bash
+
 #
 # FastP
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 fastp: fastp-build
 fastp-build:
 	mkdir -p build/fastp; \
@@ -300,9 +335,12 @@ fastp-push: fastp-build
 fastp-test:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-fastp:$(FASTP_VERSION) fastp --version
 
+fastp-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-fastp:$(FASTP_VERSION) /bin/bash
+
 #
 # SRA Tools
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 sra-tools: sra-tools-build
 sra-tools-build:
 	mkdir -p build/sra-tools; \
@@ -317,11 +355,14 @@ sra-tools-push: sra-tools-build
 	docker push systemsgenetics/actg-wgaa-sra-tools:$(SRA_TOOLS_VERSION)
 
 sra-tools-test:
-	docker run -it -u 0 systemsgenetics/actg-wgaa-sra-tools:$(SRA_TOOLS_VERSION) fastq-dump --version
+	docker run -it -u 0 systemsgenetics/actg-wgaa-sra-tools:$(SRA_TOOLS_VERSION) fastq-dump --version | grep version
+
+sra-tools-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-sra-tools:$(SRA_TOOLS_VERSION) /bin/bash
 
 #
 # MultiQC
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 multiqc: multiqc-build
 multiqc-build:
 	mkdir -p build/multiqc; \
@@ -338,9 +379,12 @@ multiqc-push: multiqc-build
 multiqc-test:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-multiqc:$(MULTIQC_VERSION) multiqc --version
 
+multiqc-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-multiqc:$(MULTIQC_VERSION) /bin/bash
+
 #
 # R
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 r-base: r-base-build
 r-base-build:
 	mkdir -p build/r-base; \
@@ -355,11 +399,14 @@ r-base-push: r-base-build
 	docker push systemsgenetics/actg-wgaa-r-base:$(R_BASE_VERSION)
 
 r-base-test:
-	docker run -it -u 0 systemsgenetics/actg-wgaa-r-base:$(R_BASE_VERSION) R --version
+	docker run -it -u 0 systemsgenetics/actg-wgaa-r-base:$(R_BASE_VERSION) R --version | grep version
+
+r-base-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-r-base:$(R_BASE_VERSION) /bin/bash
 
 #
 # FastQC
-#
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
 fastqc: fastqc-build
 fastqc-build:
 	mkdir -p build/fastqc; \
@@ -375,3 +422,6 @@ fastqc-push: fastqc-build
 
 fastqc-test:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-fastqc:$(FASTQC_VERSION) fastqc --version
+
+fastqc-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-fastqc:$(FASTQC_VERSION) /bin/bash
