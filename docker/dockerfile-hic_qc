@@ -1,0 +1,15 @@
+FROM continuumio/miniconda3:4.12.0
+
+ARG DEFAULT_VERSION=6881c33
+ENV VERSION=$DEFAULT_VERSION
+
+RUN apt-get update -qq \
+  && apt-get -qq -y install git
+
+RUN git clone https://github.com/phasegenomics/hic_qc.git \
+  && cd hic_qc \
+  && git checkout $VERSION \
+  && conda env update --quiet -n base -f env.yml && conda clean -a \
+  && . /root/.bashrc \
+  && python setup.py install --user \
+  && conda clean -a

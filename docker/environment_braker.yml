@@ -20,4 +20,3 @@ dependencies:
   - bioconda::perl-list-util
   - bioconda::perl-math-utils
   - bioconda::cdbtools
-  - bioconda::braker2=2.1.6

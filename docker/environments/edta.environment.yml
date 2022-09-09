@@ -1,7 +1,0 @@
-name: edta
-channels:
-  - conda-forge
-  - bioconda
-  - defaults
-dependencies:
-  - bioconda::edta=2.0.1
