@@ -1,0 +1,16 @@
+FROM continuumio/miniconda3:4.12.0
+
+ARG VERSION
+
+RUN apt-get update -qq \
+  && apt-get -qq -y install git
+
+RUN cd /usr/local/bin \
+  && git clone https://github.com/oushujun/EDTA.git \
+  && cd EDTA \
+  && git checkout v$VERSION \
+  && conda env create -f EDTA.yml \
+  && conda clean -a \
+  && chmod 755 EDTA.pl
+
+ENV PATH="${PATH}:/usr/local/bin/EDTA"

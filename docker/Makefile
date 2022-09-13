@@ -14,26 +14,50 @@ REPEATMASKER_VERSION=4.1.2.p1
 YAHS_VERSION=1.2a.2-0
 HIC_QC_VERSION=6881c33
 NOVOPLASTY_VERSION=4.3.1
-BUSCO_VERSION=4.1.2
+BUSCO_VERSION=5.4.3-0
 BRAKER_VERSION=2.1.6
 EDTA_VERSION=2.0.1
+JUICER_VERSION=1.22.01
 
 all: build-all
 build-all: fastqc-build r-base-build sra-tools-build fastp-build \
 	samtools-build bwa-build jellyfish-build hifiasm-build mummer-build \
 	bedtools-build repeatmasker-build yahs-build multiqc-build \
 	hic_qc-build novoplasty-build busco-build braker-build \
-	edta-build
+	edta-build juicer-build
 push-all: fastqc-push r-base-push sra-tools-push fastp-push \
 	samtools-push bwa-push jellyfish-push hifiasm-push mummer-push \
 	bedtools-push repeatmasker-push yahs-push multiqc-push \
 	hic_qc-push novoplasty-push busco-push braker-push \
-	edta-push
+	edta-push juicer-push
 test-all: fastqc-test r-base-test sra-tools-test fastp-test \
 	samtools-test bwa-test jellyfish-test hifiasm-test mummer-test \
 	bedtools-test repeatmasker-test yahs-test multiqc-test \
 	hic_qc-test novoplasty-test busco-test braker-test \
-	edta-test
+	edta-test juicer-test
+
+#
+# Juicer
+# Builds by creating a custom environment YML file and a custom conda Dockerfile
+juicer: juicer-build
+juicer-build:
+	mkdir -p build/juicer; \
+	cd build/juicer; \
+	cp ../../dockerfile-juicer ./Dockerfile; \
+	cp ../../environment_juicer.yml environment.yml; \
+	docker build --build-arg VERSION=${JUICER_VERSION} -t systemsgenetics/actg-wgaa-juicer:$(JUICER_VERSION) .
+
+juicer-push: juicer-build
+	cd build/juicer; \
+	docker push systemsgenetics/actg-wgaa-juicer:$(JUICER_VERSION)
+
+juicer-test:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-juicer:$(JUICER_VERSION) \
+	  java -Xmx32G -jar /usr/local/bin/juicer/juicer_tools_$(JUICER_VERSION).jar --version | grep Version
+
+juicer-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-juicer:$(JUICER_VERSION) /bin/bash
+
 
 #
 # EDTA
