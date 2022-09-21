@@ -18,6 +18,7 @@ BUSCO_VERSION=5.4.3-0
 BRAKER_VERSION=2.1.6
 EDTA_VERSION=2.0.1
 JUICER_VERSION=1.22.01
+MITOHIFI=2.2
 
 all: build-all
 build-all: fastqc-build r-base-build sra-tools-build fastp-build \
@@ -35,6 +36,33 @@ test-all: fastqc-test r-base-test sra-tools-test fastp-test \
 	bedtools-test repeatmasker-test yahs-test multiqc-test \
 	hic_qc-test novoplasty-test busco-test braker-test \
 	edta-test juicer-test
+
+
+#
+# MitoHiFi
+#
+mitohifi: mitohifi-build
+
+mitohifi-build:
+	mkdir -p build/mitohifi; \
+	cd build/mitohifi; \
+	git clone https://github.com/marcelauliano/MitoHiFi.git; \
+	cd MitoHiFi; \
+	git checkout v2.2; \
+	docker build -t systemsgenetics/actg-wgaa-mitohifi:$(MITOHIFI) .
+
+
+mitohifi-push: mitohifi-build
+	cd build/mitohifi; \
+	docker push systemsgenetics/actg-wgaa-mitohifi:$(MITOHIFI)
+
+mitohifi-test:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-mitohifi:$(MITOHIFI) \
+	  mitohifi.py --version
+
+mitohifi-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-mitohifi:$(MITOHIFI) /bin/bash
+
 
 #
 # Juicer
