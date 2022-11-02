@@ -18,24 +18,97 @@ BUSCO_VERSION=5.4.3-0
 BRAKER_VERSION=2.1.6
 EDTA_VERSION=2.0.1
 JUICER_VERSION=1.22.01
-MITOHIFI=2.2
+MITOHIFI_VERSION=2.2
+EMBOSS_VERSION=6.6.0
+PASA_VERSION=2.5.2
+STAR_VERSION=2.7.10a
+TRINITY_VERSION=2.13.2
 
 all: build-all
 build-all: fastqc-build r-base-build sra-tools-build fastp-build \
 	samtools-build bwa-build jellyfish-build hifiasm-build mummer-build \
 	bedtools-build repeatmasker-build yahs-build multiqc-build \
 	hic_qc-build novoplasty-build busco-build braker-build \
-	edta-build juicer-build
+	edta-build juicer-build emboss-build pasa-build trinity-build
 push-all: fastqc-push r-base-push sra-tools-push fastp-push \
 	samtools-push bwa-push jellyfish-push hifiasm-push mummer-push \
 	bedtools-push repeatmasker-push yahs-push multiqc-push \
 	hic_qc-push novoplasty-push busco-push braker-push \
-	edta-push juicer-push
+	edta-push juicer-push emboss-push pasa-push trinity-push
 test-all: fastqc-test r-base-test sra-tools-test fastp-test \
 	samtools-test bwa-test jellyfish-test hifiasm-test mummer-test \
 	bedtools-test repeatmasker-test yahs-test multiqc-test \
 	hic_qc-test novoplasty-test busco-test braker-test \
-	edta-test juicer-test
+	edta-test juicer-test emboss-test pasa-test trinity-test
+
+
+#
+# Trinity
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
+# Builds by copying a custom Dockerfile and passes in the version as an environment variable
+trinity: trinity-build
+trinity-build:
+	mkdir -p build/trinity; \
+	cd build/trinity; \
+	cp ../../dockerfile-trinity ./Dockerfile; \
+	docker build --build-arg VERSION=${TRINITY_VERSION} -t systemsgenetics/actg-wgaa-trinity:$(TRINITY_VERSION) .
+
+trinity-push: trinity-build
+	cd build/trinity; \
+	docker push systemsgenetics/actg-wgaa-trinity:$(TRINITY_VERSION)
+
+trinity-test:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-trinity:$(TRINITY_VERSION) Trinity --version | head -n 1
+
+trinity-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-trinity:$(TRINITY_VERSION) /bin/bash
+
+
+#
+# PASA
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
+pasa: pasa-build
+pasa-build:
+	mkdir -p build/pasa; \
+	cd build/pasa; \
+	cp ../../dockerfile-conda ./Dockerfile; \
+	cp ../../environment_template.yml environment.yml; \
+	echo "  - bioconda::pasa=$(PASA_VERSION)" >> environment.yml; \
+	docker build -t systemsgenetics/actg-wgaa-pasa:$(PASA_VERSION) .
+
+pasa-push: pasa-build
+	cd build/pasa; \
+	docker push systemsgenetics/actg-wgaa-pasa:$(PASA_VERSION)
+
+pasa-test:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-pasa:$(PASA_VERSION) pasa.pl --version
+
+pasa-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-pasa:$(PASA_VERSION) /bin/bash
+
+
+#
+# PASA
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
+star: star-build
+star-build:
+	mkdir -p build/star; \
+	cd build/star; \
+	cp ../../dockerfile-conda ./Dockerfile; \
+	cp ../../environment_template.yml environment.yml; \
+	echo "  - bioconda::star=$(STAR_VERSION)" >> environment.yml; \
+	docker build -t systemsgenetics/actg-wgaa-star:$(STAR_VERSION) .
+
+star-push: star-build
+	cd build/star; \
+	docker push systemsgenetics/actg-wgaa-star:$(STAR_VERSION)
+
+star-test:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-star:$(STAR_VERSION) STAR --version
+
+star-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-star:$(STAR_VERSION) /bin/bash
+
 
 
 #
@@ -49,15 +122,15 @@ mitohifi-build:
 	git clone https://github.com/marcelauliano/MitoHiFi.git; \
 	cd MitoHiFi; \
 	git checkout v2.2; \
-	docker build -t systemsgenetics/actg-wgaa-mitohifi:$(MITOHIFI) .
+	docker build -t systemsgenetics/actg-wgaa-mitohifi:$(MITOHIFI_VERSION) .
 
 
 mitohifi-push: mitohifi-build
 	cd build/mitohifi; \
-	docker push systemsgenetics/actg-wgaa-mitohifi:$(MITOHIFI)
+	docker push systemsgenetics/actg-wgaa-mitohifi:$(MITOHIFI_VERSION)
 
 mitohifi-test:
-	docker run -it -u 0 systemsgenetics/actg-wgaa-mitohifi:$(MITOHIFI) \
+	docker run -it -u 0 systemsgenetics/actg-wgaa-mitohifi:$(MITOHIFI_VERSION) \
 	  mitohifi.py --version
 
 mitohifi-run:
@@ -190,6 +263,31 @@ hic_qc-test:
 
 hic_qc-run:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-hic_qc:$(HIC_QC_VERSION) /bin/bash
+
+
+
+#
+# emboss
+# Builds by creating a custom environment YML file and using the generic conda Dockerfile
+emboss: emboss-build
+emboss-build:
+	mkdir -p build/emboss; \
+	cd build/emboss; \
+	cp ../../dockerfile-conda ./Dockerfile; \
+	cp ../../environment_template.yml environment.yml; \
+	echo "  - bioconda::emboss=$(EMBOSS_VERSION)" >> environment.yml; \
+	docker build -t systemsgenetics/actg-wgaa-emboss:$(EMBOSS_VERSION) .
+
+emboss-push: emboss-build
+	cd build/emboss; \
+	docker push systemsgenetics/actg-wgaa-emboss:$(EMBOSS_VERSION)
+
+emboss-test:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-emboss:$(EMBOSS_VERSION) embossversion
+
+emboss-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-emboss:$(EMBOSS_VERSION) /bin/bash
+
 
 #
 # yahs
