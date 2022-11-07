@@ -1,22 +1,35 @@
-name: braker
 channels:
   - conda-forge
   - bioconda
   - defaults
+  - anaconda
 dependencies:
-  - anaconda::perl
-  - bioconda::perl-app-cpanminus
-  - bioconda::perl-hash-merge
-  - bioconda::perl-parallel-forkmanager
-  - bioconda::perl-scalar-util-numeric
-  - bioconda::perl-yaml
-  - bioconda::perl-class-data-inheritable
-  - bioconda::perl-exception-class
-  - bioconda::perl-test-pod
-  - anaconda::biopython
-  - bioconda::perl-file-which
-  - bioconda::perl-mce
-  - bioconda::perl-threaded
-  - bioconda::perl-list-util
-  - bioconda::perl-math-utils
-  - bioconda::cdbtools
+  - python >=3.3
+  - biopython
+  - gemoma ==1.6.4
+  - perl
+  - perl-app-cpanminus
+  - perl-hash-merge
+  - perl-parallel-forkmanager
+  - perl-scalar-util-numeric
+  - perl-yaml
+  - perl-class-data-inheritable
+  - perl-exception-class
+  - perl-test-pod
+  - perl-file-homedir
+  - perl-file-which
+  - perl-file-spec
+  - perl-list-moreutils
+  - perl-logger-simple
+  - perl-math-utils
+  - perl-module-load-conditional
+  - perl-posix
+  - perl-mce
+  - augustus >=3.4.0
+  - bamtools >=2.5.1
+  - samtools >=1.7
+  - spaln >=2.3.3
+  - makehub
+  - cdbtools >=0.99
+  - genomethreader >=1.7.0
+  - diamond >=0.9.24

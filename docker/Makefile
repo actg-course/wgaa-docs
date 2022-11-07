@@ -88,7 +88,7 @@ pasa-run:
 
 
 #
-# PASA
+# star
 # Builds by creating a custom environment YML file and using the generic conda Dockerfile
 star: star-build
 star-build:
@@ -187,10 +187,9 @@ braker: braker-build
 braker-build:
 	mkdir -p build/braker; \
 	cd build/braker; \
-	cp ../../dockerfile-conda ./Dockerfile; \
+	cp ../../dockerfile-braker ./Dockerfile; \
 	cp ../../environment_braker.yml environment.yml; \
-	echo "  - bioconda::braker2=$(BRAKER_VERSION)" >> environment.yml; \
-	docker build -t systemsgenetics/actg-wgaa-braker:$(BRAKER_VERSION) .
+	docker build --build-arg VERSION=${BRAKER_VERSION} -t systemsgenetics/actg-wgaa-braker:$(BRAKER_VERSION) .
 
 braker-push: braker-build
 	cd build/braker; \
