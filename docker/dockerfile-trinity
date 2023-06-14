@@ -1,6 +1,8 @@
 FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
+ARG VERSION
+
 RUN apt-get -qq update && apt-get -qq -y install \
     automake \
     build-essential \
@@ -238,14 +240,10 @@ RUN wget https://github.com/COMBINE-lab/salmon/releases/download/v${SALMON_VERSI
 
 ## Trinity
 WORKDIR $SRC
-ENV TRINITY_VERSION="2.13.2"
-ENV TRINITY_CO=8849ad70be3cad9c5033f54bdf8a3c8801c93229
-
-WORKDIR $SRC
 
 RUN git clone --recursive https://github.com/trinityrnaseq/trinityrnaseq.git && \
     cd trinityrnaseq && \
-    git checkout ${TRINITY_CO} && \
+    git checkout ${VERSION} && \
     git submodule init && git submodule update && \
     git submodule foreach --recursive git submodule init && \
     git submodule foreach --recursive git submodule update && \
@@ -270,4 +268,4 @@ RUN apt-get -qq -y remove git && \
 
 ################################################
 ## be sure this is last!
-COPY Dockerfile $SRC/Dockerfile.$TRINITY_VERSION
+COPY Dockerfile $SRC/Dockerfile.$VERSION

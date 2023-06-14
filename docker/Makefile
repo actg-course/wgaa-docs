@@ -23,23 +23,73 @@ EMBOSS_VERSION=6.6.0
 PASA_VERSION=2.5.2
 STAR_VERSION=2.7.10a
 TRINITY_VERSION=2.13.2
+BLAST_VERSION=2.14.0
+KRAKEN_VERSION=2.1.3
 
 all: build-all
 build-all: fastqc-build r-base-build sra-tools-build fastp-build \
 	samtools-build bwa-build jellyfish-build hifiasm-build mummer-build \
 	bedtools-build repeatmasker-build yahs-build multiqc-build \
 	hic_qc-build novoplasty-build busco-build braker-build \
-	edta-build juicer-build emboss-build pasa-build trinity-build
+	edta-build juicer-build emboss-build pasa-build trinity-build \
+	blast-build kraken-build
 push-all: fastqc-push r-base-push sra-tools-push fastp-push \
 	samtools-push bwa-push jellyfish-push hifiasm-push mummer-push \
 	bedtools-push repeatmasker-push yahs-push multiqc-push \
 	hic_qc-push novoplasty-push busco-push braker-push \
-	edta-push juicer-push emboss-push pasa-push trinity-push
+	edta-push juicer-push emboss-push pasa-push trinity-push \
+	blast-push kraken-push
 test-all: fastqc-test r-base-test sra-tools-test fastp-test \
 	samtools-test bwa-test jellyfish-test hifiasm-test mummer-test \
 	bedtools-test repeatmasker-test yahs-test multiqc-test \
 	hic_qc-test novoplasty-test busco-test braker-test \
-	edta-test juicer-test emboss-test pasa-test trinity-test
+	edta-test juicer-test emboss-test pasa-test trinity-test \
+	blast-test kraken-test
+
+#
+# Kraken
+#
+kraken: kraken-build
+
+kraken-build:
+	mkdir -p build/kraken; \
+	cd build/kraken; \
+    cp ../../dockerfile-kraken ./Dockerfile; \
+	docker build --build-arg VERSION=${KRAKEN_VERSION} -t systemsgenetics/actg-wgaa-kraken:$(KRAKEN_VERSION) .
+
+kraken-push: kraken-build
+	cd build/blast; \
+	docker push systemsgenetics/actg-wgaa-kraken:$(KRAKEN_VERSION)
+
+kraken-test:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-kraken:$(KRAKEN_VERSION) \
+	  kraken2 -version
+
+kraken-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-kraken:$(KRAKEN_VERSION) /bin/bash
+
+
+#
+# Blast+
+#
+blast: blast-build
+
+blast-build:
+	mkdir -p build/blast; \
+	cd build/blast; \
+    cp ../../dockerfile-blast ./Dockerfile; \
+	docker build --build-arg VERSION=${BLAST_VERSION} -t systemsgenetics/actg-wgaa-blast:$(BLAST_VERSION) .
+
+blast-push: blast-build
+	cd build/blast; \
+	docker push systemsgenetics/actg-wgaa-blast:$(BLAST_VERSION)
+
+blast-test:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-blast:$(BLAST_VERSION) \
+	  blastn -version
+
+blast-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-blast:$(BLAST_VERSION) /bin/bash
 
 
 #
@@ -66,22 +116,21 @@ trinity-run:
 
 #
 # PASA
-# Builds by creating a custom environment YML file and using the generic conda Dockerfile
+# Builds by using a custom Dockerfile
 pasa: pasa-build
 pasa-build:
 	mkdir -p build/pasa; \
 	cd build/pasa; \
-	cp ../../dockerfile-conda ./Dockerfile; \
-	cp ../../environment_template.yml environment.yml; \
-	echo "  - bioconda::pasa=$(PASA_VERSION)" >> environment.yml; \
-	docker build -t systemsgenetics/actg-wgaa-pasa:$(PASA_VERSION) .
+	cp ../../dockerfile-pasa ./Dockerfile; \
+	cp ../../pasa-conf.txt ./conf.txt; \
+	docker build --build-arg VERSION=${PASA_VERSION} -t systemsgenetics/actg-wgaa-pasa:$(PASA_VERSION) .
 
 pasa-push: pasa-build
 	cd build/pasa; \
 	docker push systemsgenetics/actg-wgaa-pasa:$(PASA_VERSION)
 
 pasa-test:
-	docker run -it -u 0 systemsgenetics/actg-wgaa-pasa:$(PASA_VERSION) pasa.pl --version
+	docker run -it -u 0 systemsgenetics/actg-wgaa-pasa:$(PASA_VERSION) Launch_PASA_pipeline.pl --version
 
 pasa-run:
 	docker run -it -u 0 systemsgenetics/actg-wgaa-pasa:$(PASA_VERSION) /bin/bash
@@ -134,7 +183,7 @@ mitohifi-test:
 	  mitohifi.py --version
 
 mitohifi-run:
-	docker run -it -u 0 systemsgenetics/actg-wgaa-mitohifi:$(MITOHIFI) /bin/bash
+	docker run -it -u 0 systemsgenetics/actg-wgaa-mitohifi:$(MITOHIFI_VERSION) /bin/bash
 
 
 #
