@@ -13,4 +13,6 @@ RUN wget https://github.com/DerrickWood/kraken2/archive/refs/tags/v$VERSION.tar.
     && cd kraken2-$VERSION/ \
     && sh install_kraken2.sh /usr/local/kraken2
 
+RUN apt-get -qq -y install rsync
+
 ENV PATH="${PATH}:/usr/local/kraken2"

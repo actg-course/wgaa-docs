@@ -25,6 +25,7 @@ STAR_VERSION=2.7.10a
 TRINITY_VERSION=2.13.2
 BLAST_VERSION=2.14.0
 KRAKEN_VERSION=2.1.3
+BIOPYTHON_VERSION=1.81
 
 all: build-all
 build-all: fastqc-build r-base-build sra-tools-build fastp-build \
@@ -32,19 +33,40 @@ build-all: fastqc-build r-base-build sra-tools-build fastp-build \
 	bedtools-build repeatmasker-build yahs-build multiqc-build \
 	hic_qc-build novoplasty-build busco-build braker-build \
 	edta-build juicer-build emboss-build pasa-build trinity-build \
-	blast-build kraken-build
+	blast-build kraken-build python
 push-all: fastqc-push r-base-push sra-tools-push fastp-push \
 	samtools-push bwa-push jellyfish-push hifiasm-push mummer-push \
 	bedtools-push repeatmasker-push yahs-push multiqc-push \
 	hic_qc-push novoplasty-push busco-push braker-push \
 	edta-push juicer-push emboss-push pasa-push trinity-push \
-	blast-push kraken-push
+	blast-push kraken-push biopython-push
 test-all: fastqc-test r-base-test sra-tools-test fastp-test \
 	samtools-test bwa-test jellyfish-test hifiasm-test mummer-test \
 	bedtools-test repeatmasker-test yahs-test multiqc-test \
 	hic_qc-test novoplasty-test busco-test braker-test \
 	edta-test juicer-test emboss-test pasa-test trinity-test \
-	blast-test kraken-test
+	blast-test kraken-test biopython-test
+
+#
+# Python
+biopython: biopython-build
+biopython-build:
+	mkdir -p build/biopython; \
+	cd build/biopython; \
+	cp ../../dockerfile-conda ./Dockerfile; \
+	cp ../../environment_biopython.yml environment.yml; \
+	docker build -t systemsgenetics/actg-wgaa-biopython:$(BIOPYTHON_VERSION) .
+
+biopython-push: biopython-build
+	cd build/biopython; \
+	docker push systemsgenetics/actg-wgaa-biopython:$(BIOPYTHON_VERSION)
+
+biopython-test:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-biopython:$(BIOPYTHON_VERSION) python3 -c "from importlib.metadata import version; print(version('biopython'))"
+
+biopython-run:
+	docker run -it -u 0 systemsgenetics/actg-wgaa-biopython:$(BIOPYTHON_VERSION) /bin/bash
+
 
 #
 # Kraken
@@ -58,7 +80,7 @@ kraken-build:
 	docker build --build-arg VERSION=${KRAKEN_VERSION} -t systemsgenetics/actg-wgaa-kraken:$(KRAKEN_VERSION) .
 
 kraken-push: kraken-build
-	cd build/blast; \
+	cd build/kraken; \
 	docker push systemsgenetics/actg-wgaa-kraken:$(KRAKEN_VERSION)
 
 kraken-test:
