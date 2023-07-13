@@ -88,3 +88,5 @@ RUN cp $PASAHOME/bin/* /usr/local/bin/
 COPY conf.txt /usr/local/src/PASApipeline/pasa_conf/conf.txt
 
 ENV PATH="${PATH}:${PASAHOME}"
+
+RUN apt-get update && apt-get install --yes lighttpd libgd-perl libcgi-pm-perl

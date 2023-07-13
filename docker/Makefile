@@ -53,7 +53,7 @@ biopython: biopython-build
 biopython-build:
 	mkdir -p build/biopython; \
 	cd build/biopython; \
-	cp ../../dockerfile-conda ./Dockerfile; \
+	cp ../../dockerfile-biopython ./Dockerfile; \
 	cp ../../environment_biopython.yml environment.yml; \
 	docker build -t systemsgenetics/actg-wgaa-biopython:$(BIOPYTHON_VERSION) .
 
