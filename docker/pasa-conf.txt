@@ -7,16 +7,16 @@
 
 # server actively running MySQL
 # MYSQLSERVER=server.com
-MYSQLSERVER=localhost;mysql_socket=/tmp/mysqld.sock
+MYSQLSERVER=localhost;mysql_socket=./mysqld.sock
 # Pass socket connections through Perl DBI syntax e.g. MYSQLSERVER=mysql_socket=/tmp/mysql.sock
 
 # read-only username and password
-MYSQL_RO_USER=root
-MYSQL_RO_PASSWORD=
+MYSQL_RO_USER=pasa_access
+MYSQL_RO_PASSWORD=pasa_access
 
 # read-write username and password
-MYSQL_RW_USER=root
-MYSQL_RW_PASSWORD=
+MYSQL_RW_USER=pasa_full
+MYSQL_RW_PASSWORD=pasa_full
 
 #### END OF MANDATORY SETTINGS ######
 
