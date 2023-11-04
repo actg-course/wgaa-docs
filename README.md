@@ -1,4 +1,4 @@
-# Whole Genome Annotation and Assembly
+# Documentation for the Whole Genome Annotation and Assembly Course
 
 [![Documentation Status](https://readthedocs.org/projects/actg-wgaa/badge/?version=latest)](https://actg-wgaa.readthedocs.io/en/latest/?badge=latest)
 
